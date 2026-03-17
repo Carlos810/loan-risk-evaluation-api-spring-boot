@@ -33,6 +33,7 @@ public class RiskController {
     @PostMapping("/evaluate")
     public ResponseEntity analizateRiskCases(@RequestBody RiskEvaluationRequest request){
         String empresaId = request.getEmpresaId();
+
         DatosContables datos = _datosProvider.obtenerDatos(empresaId);
         HistorialPagos historial = _historialProvider.obtenerHistorial(empresaId);
         EstadoLegal legal = _legalProvider.obtenerEstado(empresaId);
