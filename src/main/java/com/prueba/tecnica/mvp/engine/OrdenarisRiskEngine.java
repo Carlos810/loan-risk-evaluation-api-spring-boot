@@ -29,16 +29,11 @@ public class OrdenarisRiskEngine {
             RuleResult result = rule.evaluate(context);
             resultados.add(result);
 
-            /*if(result.getRiskLevel() != null){
-                risk = result.getRiskLevel();
-            }*/
-
             if(result.getRiskLevel() == RiskLevel.RECHAZADO){
                 return new RiskEvaluationResult(RiskLevel.RECHAZADO,result.getMessage(), resultados);
             }
             risk = RiskLevel.max(risk, result.getRiskLevel());
         }
-
 
         String motivoFinal = resultados.stream()
                 .filter(r -> r.getRiskLevel() != null)
@@ -47,7 +42,5 @@ public class OrdenarisRiskEngine {
                 .orElse("Evaluación sin hallazgos");
 
         return new RiskEvaluationResult(risk,motivoFinal,resultados);
-
     }
-
 }
