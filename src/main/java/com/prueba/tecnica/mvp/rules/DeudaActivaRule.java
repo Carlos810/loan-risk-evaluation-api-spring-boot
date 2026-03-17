@@ -1,6 +1,5 @@
 package com.prueba.tecnica.mvp.rules;
 
-
 import com.prueba.tecnica.mvp.context.RiskEvaluationContext;
 import com.prueba.tecnica.mvp.enumeraciones.NameOfRule;
 import com.prueba.tecnica.mvp.enumeraciones.RiskLevel;
@@ -9,25 +8,23 @@ import com.prueba.tecnica.mvp.model.result.RuleResult;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HistorialExcelenteRule implements IRiskRule {
-
+public class DeudaActivaRule implements IRiskRule {
     @Override
     public RuleResult evaluate(RiskEvaluationContext context) {
+        if(context.getHistorialPagos().isDeudaMayor90Dias()){
 
-        if(context.getHistorialPagos().isHistorialExcelente()){
             return new RuleResult(
-                    NameOfRule.HISTORIAL.toString(),
+                    NameOfRule.DEUDA_ACTIVA.name(),
                     true,
-                    RiskLevel.BAJO,
-                    "Historial excelente"
+                    RiskLevel.RECHAZADO,
+                    "Deuda vencida mayor a 90 días"
             );
         }
-
         return new RuleResult(
-                NameOfRule.HISTORIAL.toString(),
-                true,
-                RiskLevel.ALTO,
-                "Historial con Morosidad"
+                NameOfRule.DEUDA_ACTIVA.name(),
+                false,
+                RiskLevel.MEDIO,
+                "Deuda anterior esta en el rango de 3 meses"
         );
     }
 }

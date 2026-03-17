@@ -27,7 +27,6 @@ public class EmpresaNuevaRule implements IRiskRule {
             );
         }
 
-        //return new RuleResult(true, RiskLevel.BAJO, "Empresa tiene más de 1 año y medio operando");
-        return new RuleResult(NameOfRule.EMPRESA_NUEVA.toString(),false,null,null);
+        return new RuleResult(NameOfRule.EMPRESA_NUEVA.toString(),true,RiskLevel.BAJO,"Empresa tiene más de 1 año y medio operando");
     }
 }

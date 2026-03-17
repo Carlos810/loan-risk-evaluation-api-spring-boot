@@ -16,7 +16,4 @@ public class RuleResult {
 
     private String message;
 
-    public static RuleResult none(){
-        return new RuleResult(null,false,null,null);
-    }
 }
