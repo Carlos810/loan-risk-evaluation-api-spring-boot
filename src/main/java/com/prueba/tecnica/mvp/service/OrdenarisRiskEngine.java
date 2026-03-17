@@ -1,5 +1,6 @@
 package com.prueba.tecnica.mvp.service;
 
+import com.prueba.tecnica.mvp.Validate.Validations;
 import com.prueba.tecnica.mvp.engine.RiskEvaluationContext;
 import com.prueba.tecnica.mvp.model.RiskEvaluationResult;
 import com.prueba.tecnica.mvp.model.RiskLevel;
@@ -14,21 +15,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class OrdenarisRiskEngine {
-    private final List<RiskRule> rules;
+    private final List<RiskRule> _rules;
+    private final Validations _utils;
 
     public RiskEvaluationResult evaluate(RiskEvaluationContext context){
-        Integer countRules = rules.size();
-        System.out.println("loaded rules: " + countRules);
-
-        if(countRules == 0) {
-            throw new IllegalArgumentException("There is not rules loaded, please review '@Components as rules'");
-        }
+        _utils.readAndLoadProviders(_rules);
+        _utils.parseProducto(context.getRequest().getProductoFinanciero().toString());
 
         RiskLevel risk = RiskLevel.BAJO;
 
         List<RuleResult> resultados = new ArrayList<>();
 
-        for (RiskRule rule: rules){
+        for (RiskRule rule: _rules){
             RuleResult result = rule.evaluate(context);
             resultados.add(result);
 

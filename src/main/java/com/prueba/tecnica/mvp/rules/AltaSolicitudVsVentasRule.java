@@ -1,7 +1,6 @@
 package com.prueba.tecnica.mvp.rules;
 
 import com.prueba.tecnica.mvp.engine.RiskEvaluationContext;
-import com.prueba.tecnica.mvp.model.ResponseApiError;
 import com.prueba.tecnica.mvp.model.RiskLevel;
 import com.prueba.tecnica.mvp.model.RuleResult;
 import org.springframework.stereotype.Component;
@@ -31,4 +30,6 @@ public class AltaSolicitudVsVentasRule implements RiskRule {
                 "Monto dentro del rango permitido"
         );
     }
+
+
 }
