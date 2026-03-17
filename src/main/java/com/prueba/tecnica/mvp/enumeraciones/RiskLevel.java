@@ -1,4 +1,4 @@
-package com.prueba.tecnica.mvp.model;
+package com.prueba.tecnica.mvp.enumeraciones;
 
 public enum RiskLevel {
     BAJO,

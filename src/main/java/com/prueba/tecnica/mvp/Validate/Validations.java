@@ -1,7 +1,7 @@
 package com.prueba.tecnica.mvp.Validate;
 
 import com.prueba.tecnica.mvp.enumeraciones.ProductoFinanciero;
-import com.prueba.tecnica.mvp.rules.RiskRule;
+import com.prueba.tecnica.mvp.interfaces.global_operation.IRiskRule;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class Validations {
 
     }
 
-    public static void readAndLoadProviders(List<RiskRule> rules){
+    public static void readAndLoadProviders(List<IRiskRule> rules){
         Integer countRules = rules.size();
         System.out.println("loaded rules: " + countRules);
 

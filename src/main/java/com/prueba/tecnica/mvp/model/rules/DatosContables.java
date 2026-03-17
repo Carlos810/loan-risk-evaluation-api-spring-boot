@@ -1,4 +1,4 @@
-package com.prueba.tecnica.mvp.model;
+package com.prueba.tecnica.mvp.model.rules;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

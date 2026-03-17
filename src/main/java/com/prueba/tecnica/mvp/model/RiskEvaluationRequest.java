@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Data
@@ -15,7 +15,7 @@ public class RiskEvaluationRequest {
 
     private BigDecimal montoSolicitado;
 
-    private LocalDateTime fechaSolicitud;
+    private LocalDate fechaSolicitud;
 
     private ProductoFinanciero productoFinanciero;
 }

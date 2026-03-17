@@ -1,5 +1,6 @@
-package com.prueba.tecnica.mvp.model;
+package com.prueba.tecnica.mvp.model.result;
 
+import com.prueba.tecnica.mvp.enumeraciones.RiskLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

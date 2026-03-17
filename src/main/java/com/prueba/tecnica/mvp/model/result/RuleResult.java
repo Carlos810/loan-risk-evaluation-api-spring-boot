@@ -1,11 +1,14 @@
-package com.prueba.tecnica.mvp.model;
+package com.prueba.tecnica.mvp.model.result;
 
+import com.prueba.tecnica.mvp.enumeraciones.RiskLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 public class RuleResult {
+
+    private String TypeRule;
 
     private boolean applied;
 
@@ -14,6 +17,6 @@ public class RuleResult {
     private String message;
 
     public static RuleResult none(){
-        return new RuleResult(false,null,null);
+        return new RuleResult(null,false,null,null);
     }
 }

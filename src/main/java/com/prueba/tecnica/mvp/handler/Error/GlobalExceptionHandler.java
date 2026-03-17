@@ -1,6 +1,5 @@
 package com.prueba.tecnica.mvp.handler.Error;
 
-import com.prueba.tecnica.mvp.model.ResponseApiError;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -91,7 +90,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST.value(),
                 request.getMethod(),
                 request.getRequestURI(),
-                "Producto financiero capturado no existe, favor de ingresar uno válido",
+                ex.getMessage(),
                 getRootCause(ex),
                 LocalDateTime.now()
         );
