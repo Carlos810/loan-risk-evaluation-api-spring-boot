@@ -2,8 +2,10 @@ package com.prueba.tecnica.mvp.handler.Error;
 
 import com.prueba.tecnica.mvp.model.ResponseApiError;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -11,10 +13,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-   /* @ExceptionHandler(DataIntegrityViolationException.class)
+    private String getRootCause(Throwable ex) {
+        Throwable cause = ex;
+        while (cause.getCause() != null) {
+            cause = cause.getCause();
+        }
+        return cause.getMessage();
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ResponseApiError> handleDatabaseError(
             DataIntegrityViolationException ex,
             HttpServletRequest request){
@@ -29,7 +39,7 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-    }*/
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseApiError> handleGenericError(
@@ -70,6 +80,23 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ResponseApiError> handleEnumError(
+            HttpMessageNotReadableException ex,
+            HttpServletRequest request) {
+
+        ResponseApiError error = new ResponseApiError(
+                HttpStatus.BAD_REQUEST.value(),
+                request.getMethod(),
+                request.getRequestURI(),
+                "Producto financiero capturado no existe, favor de ingresar uno válido",
+                getRootCause(ex),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.badRequest().body(error);
     }
 
 }

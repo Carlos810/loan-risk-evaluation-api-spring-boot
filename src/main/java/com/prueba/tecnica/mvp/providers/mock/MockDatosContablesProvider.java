@@ -11,9 +11,9 @@ public class MockDatosContablesProvider implements IDatosContablesProvider {
     @Override
     public DatosContables obtenerDatos(String empresaId) {
         return new DatosContables(
-                new BigDecimal(12000),
-                new BigDecimal(80000),
-                new BigDecimal(30000)
+                new BigDecimal(12000), //ventasPromedioMensual
+                new BigDecimal(80000), //activos
+                new BigDecimal(30000)  //pasivos
         );
     }
 }

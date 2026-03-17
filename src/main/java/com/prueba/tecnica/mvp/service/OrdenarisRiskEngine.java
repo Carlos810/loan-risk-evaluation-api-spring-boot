@@ -20,8 +20,6 @@ public class OrdenarisRiskEngine {
 
     public RiskEvaluationResult evaluate(RiskEvaluationContext context){
         _utils.readAndLoadProviders(_rules);
-        _utils.parseProducto(context.getRequest().getProductoFinanciero().toString());
-
         RiskLevel risk = RiskLevel.BAJO;
 
         List<RuleResult> resultados = new ArrayList<>();
